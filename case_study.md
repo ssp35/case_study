@@ -146,3 +146,13 @@ nyc_airbnb %>%
 <img src="case_study_files/figure-gfm/unnamed-chunk-7-1.png" width="90%" />
 
 ## Leaflet
+
+``` r
+pal <- colorNumeric("viridis", NULL)
+nyc_airbnb %>% 
+  filter(price < 500) %>% 
+  sample_n(1000) %>% 
+  leaflet() %>% 
+  addProviderTiles(providers$CartoDB.Positron) %>% 
+  addCircleMarkers(~lat, ~long, radius = 1, color = ~pal(price))
+```
